@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <title>Editar Producto</title>
+  </head>
+  <body>
+    {% include "tmp/header.html" %} {% include "tmp/menu.html" %}
+    <!-- Main -->
+    <div class="container mt-4 mb-4">
+      <form action="{% url 'TP_FINAL:editarProducto' producto.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{error}}
+        <div class="row text-center">
+          <input
+            class="form-control form-control-lg mb-3"
+            type="text"
+            placeholder="nombre del producto"
+            name="titulo"
+            aria-label=".form-control-lg example"
+            value="{{producto.titulo}}"
+          />
+          <div class="col-12 col-md-6">
+            <div id="img-producto">
+              <img
+                id="vistaPrevia"
+                class="img-thumbnail"
+                src="../media/{{producto.imagen}}"
+                alt="img del producto"
+              />
+              <input
+                type="file"
+                class="form-control"
+                name="imagen"
+                id="imagen"
+                size="20"
+                onchange="document.getElementById('vistaPrevia').src = window.URL.createObjectURL(this.files[0])"
+                accept="image/*"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-md-6 text-start">
+            <label for="categoria" class="form-label"
+              >Categoria del producto</label
+            >
+            <select
+              class="form-select"
+              id="categoria"
+              name="categoria"
+              aria-label="Default select example"
+            >
+              <option selected>----</option>
+              <option value="Yerba mate" {% if producto.categoria == "Yerba mate" %} selected {% endif %}>Yerba mate</option>
+              <option value="Hierbas" {% if producto.categoria == "Hierbas" %} selected {% endif %}>Hierbas</option>
+              <option value="Saquitos" {% if producto.categoria == "Saquitos" %} selected {% endif %}>Saquitos</option>
+            </select>
+            <label for="exampleFormControlTextarea1" class="form-label mb-2"
+              >Descripcion</label
+            >
+            <textarea
+              name="descripcion"
+              class="form-control mb-4"
+              id="exampleFormControlTextarea1"
+              rows="3"
+            >{{producto.descripcion}}</textarea>
+            <div class="row">
+              <label for="precio" class="form-label mb-2">Precio</label>
+              <div class="col">
+                <div class="input-group mb-3">
+                  <span class="input-group-text">$</span>
+                  <input
+                    type="number"
+                    id="precio"
+                    name="precio"
+                    class="form-control"
+                    placeholder=""
+                    value="{{producto.precio}}"
+                  />
+                  <span class="input-group-text">.00</span>
+                </div>
+              </div>
+              <div class="col">
+                <input class="btn btn-primary mb-2" type="submit" value="Modificar">
+                <a href="{% url 'TP_FINAL:eliminarProducto' producto.id %}" class="btn btn-primary mb-2">Eliminar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Fin de Main -->
+
+    {% include "tmp/footer.html" %}
+
+    <!-- scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

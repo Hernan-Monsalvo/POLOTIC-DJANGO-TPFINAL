@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <title>Registro</title>
+  </head>
+  <body>
+
+    {% include "tmp/header.html" %}
+    {% include "tmp/menu.html" %}
+    <!-- Main -->
+    <div class="container mt-4 mb-5">
+      <div class="row text-center">
+        <div class="col-12 col-md-4 offset-md-4">
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" placeholder="Juan Perez">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+          </div>
+          <div class="mb-3">
+            <label for="pass" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="pass" placeholder="Contraseña">
+          </div>
+          <div class="mb-3">
+            <label for="pass2" class="form-label">Repite tu contraseña</label>
+            <input type="password" class="form-control" id="pass2" placeholder="Repite tu Contraseña">
+          </div>
+          <button type="submit" class="btn btn-primary mb-4">Registar</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Fin de Main -->
+
+    {% include "tmp/footer.html" %}
+
+    <!-- scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
