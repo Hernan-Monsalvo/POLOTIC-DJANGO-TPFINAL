@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% for val in values %}
+    <h5>{{val}}</h5>
+    {% endfor %}
+    {{precioTotal}}
+    {% for key in keys %}
+    <h5>{{key}}</h5>
+    {% endfor %}
+
+    <p>--------------</p>
+
+    {{carrito.usuario}}
+<br>
+{{carrito.id}}
+<br>
+    {{carrito.precioTotal}}
+
+    <a href="{% url 'TP_FINAL:carrito'%}">CARRITO</a>
+</body>
+</html>

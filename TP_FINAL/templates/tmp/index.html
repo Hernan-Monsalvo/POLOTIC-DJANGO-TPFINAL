@@ -16,8 +16,9 @@
     {% include "tmp/menu.html" %}
     <!-- Main -->
   
-    <div class="container text-center">
+    <div class="container text-center mb-4">
       <h3 class="my-2">Ultimos productos</h3>
+      
       <div class="row text-center mt-3">
         {% for un_producto in primerosTres %}
         <div class="col-12 col-md-4" >
@@ -25,7 +26,11 @@
             <img src="media/{{un_producto.imagen}}" class="card-img-top" style=" height: 18rem;" alt="img del producto">
             <div class="card-body">
               <h5 class="card-title">{{un_producto.titulo}}</h5>
+              {% if rol != "admin" %}
               <a href="{% url 'TP_FINAL:producto' un_producto.id %}" class="btn btn-primary">Ver producto</a>
+              {% else %}
+              <a href="{% url 'TP_FINAL:editarProducto' un_producto.id %}" class="btn btn-primary">Editar producto</a>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -36,7 +41,12 @@
         <h3 class="mb-2">mas productos</h3>
         <ul class="list-group text-start mb-5">
           {% for un_producto in restantes %}
-          <li class="list-group-item">{{un_producto.titulo}}  ---> <a href="{% url 'TP_FINAL:producto' un_producto.id %}">VER</a></li>
+          <li class="list-group-item">{{un_producto.titulo}}  --->              
+             {% if rol != "admin" %}
+            <a href="{% url 'TP_FINAL:producto' un_producto.id %}" class="">Ver</a>
+            {% else %}
+            <a href="{% url 'TP_FINAL:editarProducto' un_producto.id %}" class="">Editar</a>
+            {% endif %}</li>
           {% endfor %}
         </ul>
       </div>

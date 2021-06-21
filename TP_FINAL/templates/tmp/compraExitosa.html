@@ -9,30 +9,22 @@
       integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
       crossorigin="anonymous"
     />
-    <title>Producto</title>
+    <title>Sobre nosotros</title>
   </head>
   <body>
-    {% include "tmp/header.html" %} {% include "tmp/menu.html" %}
+
+    {% include "tmp/header.html" %}
+    {% include "tmp/menu.html" %}
     <!-- Main -->
-    <div class="container mt-4 mb-4">
+    <div class="container mt-4 mb-5">
       <div class="row text-center">
-        <h1>{{ producto.titulo }}</h1>
-        <div class="col-12 col-md-6"><img src="../media/{{producto.imagen}}" alt="imagen del producto" /></div>
-        <div class="col-12 col-md-6 text-start">
-          <h3>{{ producto.categoria }}</h3>
-          <p>
-            {{ producto.descripcion }}
-          </p>
-          <div class="row">
-            <div class="col"><h4>Precio: ${{ producto.precio }}</h4></div>
-            <div class="col">
-              <a class="btn btn-primary" href="{% url 'TP_FINAL:addCarrito' producto.id %}">Agregar al carrito</a>
-              
-            </div>
-          </div>
+        <div class="col mb-3">
+            <h3>Pedido cargado exitosamente!</h3>
+            <a class="btn btn-primary" href="{% url 'TP_FINAL:index' %}">Volver</a>
         </div>
       </div>
     </div>
+
 
     <!-- Fin de Main -->
 

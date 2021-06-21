@@ -9,27 +9,23 @@
       integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
       crossorigin="anonymous"
     />
-    <title>Producto</title>
+    <title>Carrito</title>
   </head>
   <body>
-    {% include "tmp/header.html" %} {% include "tmp/menu.html" %}
+    {% include "tmp/header.html" %}
+     {% include "tmp/menu.html" %}
     <!-- Main -->
     <div class="container mt-4 mb-4">
-      <div class="row text-center">
-        <h1>{{ producto.titulo }}</h1>
-        <div class="col-12 col-md-6"><img src="../media/{{producto.imagen}}" alt="imagen del producto" /></div>
-        <div class="col-12 col-md-6 text-start">
-          <h3>{{ producto.categoria }}</h3>
-          <p>
-            {{ producto.descripcion }}
-          </p>
-          <div class="row">
-            <div class="col"><h4>Precio: ${{ producto.precio }}</h4></div>
-            <div class="col">
-              <a class="btn btn-primary" href="{% url 'TP_FINAL:addCarrito' producto.id %}">Agregar al carrito</a>
-              
-            </div>
-          </div>
+      <div class="row text-left">
+        <div class="col-12 col-md-4 offset-md-4 mb-3">
+            <h4>Pedido n°: {{pedido.id}} </h4>
+             <h4> Comprador: {{pedido.usuario}}</h4>
+            {% for producto in pedido.productos.all %}
+          <li class="mb-1" style="font-size: 1.5rem;">  {{producto}} </li>
+            {% endfor %}
+            <h3>Total del carrito: ${{pedido.precioTotal}}</h3>
+          </ul>
+
         </div>
       </div>
     </div>

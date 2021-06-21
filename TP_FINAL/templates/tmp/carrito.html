@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <title>Carrito</title>
+  </head>
+  <body>
+    {% include "tmp/header.html" %}
+     {% include "tmp/menu.html" %}
+    <!-- Main -->
+    <div class="container mt-4 mb-4">
+      <div class="row text-left">
+        <div class="col-12 col-md-4 offset-md-4 mb-3">
+          {% if carrito %}
+          <h4 class="mb-4">Productos en tu carrito:</h4>
+          <form action="{% url 'TP_FINAL:realizarCompra' usuario%}" method="post">
+            {% csrf_token %}
+          <ul class="mb-4">
+            {% for producto in carrito %}
+          <li class="mb-1">{{producto}} <a href="{% url 'TP_FINAL:removeCarrito' producto.id %}">Quitar</a> </li>
+          <input type="hidden" name="productos" value="{{producto.id}}">
+            {% endfor %}
+          </ul>
+          <h4>Precio Total: ${{precioTotal}}</h4>
+          <input type="hidden" name="precioTotal" value="{{precioTotal}}">
+          <input type="submit" class="btn btn-success" value="Realizar pedido" onclick="return confirm('¿Seguro que quieres realizarl el pedido?');">
+        </form>
+        {% else %}
+          <h4> No hay nada en tu carrito. </h4>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Fin de Main -->
+
+    {% include "tmp/footer.html" %}
+
+    <!-- scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

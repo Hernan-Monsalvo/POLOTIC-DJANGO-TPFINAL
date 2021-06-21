@@ -30,29 +30,46 @@
                   Categorias
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Yerba mate</a></li>
+                  <li>
+                    <form action="{% url 'TP_FINAL:busqueda' %}" method="POST">
+                      {% csrf_token %}
+                      <input type="hidden" name="busqueda" value="yerba mate">
+                    <button class="dropdown-item" type="submit">Yerba mate</button>
+                  </form></li>
                   <li><hr class="dropdown-divider" /></li>
-                  <li><a class="dropdown-item" href="#">Hierbas</a></li>
+                  <li><form action="{% url 'TP_FINAL:busqueda' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="busqueda" value="hierbas">
+                  <button class="dropdown-item" type="submit">Hierbas</button>
+                </form></li>
                   <li><hr class="dropdown-divider" /></li>
-                  <li><a class="dropdown-item" href="#">Saquitos</a></li>
+                  <li><form action="{% url 'TP_FINAL:busqueda' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="busqueda" value="saquitos">
+                  <button class="dropdown-item" type="submit">Saquitos</button>
+                </form></li>
                 </ul>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'TP_FINAL:acercaDe' %}">Acerca De</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Contacto</a>
+                <a class="nav-link" href="mailto:monsalvo.h@hotmail.com">Contacto</a>
               </li>
+              {% if rol == "admin" %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'TP_FINAL:nuevoProducto' %}">Nuevo producto</a>
               </li>
+              {% endif %}
             </ul>
-            <form class="d-flex">
+            <form class="d-flex" action="{% url 'TP_FINAL:busqueda' %}" method="POST">
+              {% csrf_token %}
               <input
                 class="form-control me-2"
                 type="search"
-                placeholder="buscar.."
+                placeholder="buscar productos"
                 aria-label="Search"
+                name="busqueda"
               />
               <button class="btn btn-outline-success" type="submit">
                 Buscar

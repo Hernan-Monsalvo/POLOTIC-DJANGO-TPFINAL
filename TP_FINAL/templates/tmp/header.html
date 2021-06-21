@@ -4,8 +4,21 @@
           <span class="navbar-brand mb-0 h1">JAGUARETE KAA S.A.</span>
   
           <div>
-          <a class="btn btn-primary" href="login">Login</a>
-          <a class="btn btn-primary" href="registro">Registro</a>
+            <div class="btn btn-outline-primary disabled" >{{rol}}</div> 
+          {% if rol != "invitado" %}
+          <a class="btn btn-primary" href="{% url 'TP_FINAL:logout'%}?next=/">Salir</a>
+          {% else %}
+          <a class="btn btn-primary" href="{% url 'TP_FINAL:login'%}">Login</a>
+          <a class="btn btn-primary" href="{% url 'TP_FINAL:registrarse'%}">Registro</a>
+          {% endif %}
+          {% if rol == "usuario" %}
+          <a class="btn btn-primary" href="{% url 'TP_FINAL:carrito'%}">Carrito</a>
+          {% endif %}
+          {% if rol == "admin" %}
+          <a class="btn btn-primary" href="{% url 'TP_FINAL:pedidos'%}">Pedidos</a>
+          {% endif %}
+
           </div>
         </div>
       </nav>
+

@@ -53,10 +53,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'TP_POLOTIC.urls'
 
+LOGIN_REDIRECT_URL = ('../../TP_FINAL')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,3 +133,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+#simular email por consola
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
