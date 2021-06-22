@@ -33,11 +33,11 @@
             />
             <div class="card-body">
               <h5 class="card-title">{{un_producto.titulo}}</h5>
-              <a
-                href="{% url 'TP_FINAL:producto' un_producto.id %}"
-                class="btn btn-primary"
-                >Ver producto</a
-              >
+              {% if rol != "admin" %}
+              <a href="{% url 'TP_FINAL:producto' un_producto.id %}" class="btn btn-primary">Ver producto</a>
+              {% else %}
+              <a href="{% url 'TP_FINAL:editarProducto' un_producto.id %}" class="btn btn-primary">Editar producto</a>
+              {% endif %}
             </div>
           </div>
         </div>
