@@ -6,18 +6,13 @@ services:
         build: .
         ports:
             - 8000:8000
-        depends_on: 
-            - db
-        links:
-            - db
-    db:
-        image: mysql
-        command: --default-authentication-plugin=mysql_native_password
-        restart: always
-        environment:
-            MYSQL_ROOT_PASSWORD: root  
-            MYSQL_DATABASE: db
         volumes:
-            - myapp:/var/lib/mysql
-volumes:
-    myapp:
+            - ../db:/app/sqlite
+    web2:
+        build: .
+        ports:
+            - 9000:8000
+        volumes:
+            - ../db:/app/sqlite
+
+            
